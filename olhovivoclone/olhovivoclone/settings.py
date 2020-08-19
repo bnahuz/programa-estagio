@@ -41,6 +41,8 @@ OFFICIAL_APPS = [
 
 THIRD_APS = [
     'rest_framework',
+    'django_filters',
+
 ]
 
 MY_APPS = [
@@ -48,6 +50,10 @@ MY_APPS = [
 ]
 
 INSTALLED_APPS = OFFICIAL_APPS + THIRD_APS + MY_APPS
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

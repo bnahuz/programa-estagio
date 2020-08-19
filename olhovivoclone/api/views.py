@@ -1,11 +1,14 @@
-from rest_framework import generics
 from .models import *
 from .serializers import *
+from rest_framework import generics
+from django_filters import rest_framework as filters
 
-class ParadaList(generics.ListCreateAPIView):
+
+class ParadaList(generics.ListCreateAPIView): 
 
     queryset = Parada.objects.all()
     serializer_class = ParadaSerializer
+    
 
 
 '''class ParadaList(generics.ListCreateAPIView):
@@ -27,6 +30,8 @@ class LinhaList(generics.ListCreateAPIView):
 
     queryset = Linha.objects.all()
     serializer_class = LinhaSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = '__all__'
 
 class LinhaDetail(generics.RetrieveUpdateDestroyAPIView):
 
