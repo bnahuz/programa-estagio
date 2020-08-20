@@ -7,20 +7,7 @@ from django_filters import rest_framework as filters
 class ParadaList(generics.ListCreateAPIView): 
 
     queryset = Parada.objects.all()
-    serializer_class = ParadaSerializer
-    
-
-
-'''class ParadaList(generics.ListCreateAPIView):
-    serializer_class = ParadaSerializer
-
-    def get_queryset(self):
-        queryset = Parada.objects.all()
-        linha = self.request.query_params.get('linha', None)
-        if linha is not None:
-            queryset = queryset.filter(linhas__parada=linha)
-            
-        return queryset'''    
+    serializer_class = ParadaSerializer  
 
 class ParadaDetail(generics.RetrieveUpdateDestroyAPIView):
 
@@ -42,7 +29,9 @@ class VeiculoList(generics.ListCreateAPIView):
 
     queryset = Veiculo.objects.all()
     serializer_class = VeiculoSerializer
-
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = '__all__'
+    
 class VeiculoDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Veiculo.objects.all()
